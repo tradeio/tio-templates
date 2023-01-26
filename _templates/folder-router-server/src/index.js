@@ -8,10 +8,6 @@ const app = express();
 app.use(express.json());
 
 folderRouter(app, path.resolve(__dirname, "./routes")).then(() => {
-  app.get("/", async (req, res) => {
-    res.json({ status: true, message: "Our node.js app works" });
-  });
-
   app.use("*", (req, res) => {
     // 404 -- When no route is matched
     res.status(404).json({ message: "Route not found" });
