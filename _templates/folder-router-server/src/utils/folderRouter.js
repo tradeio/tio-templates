@@ -24,7 +24,7 @@ const calcRoutePath = (_path, file, prefix, _originalPath) => {
 
 async function _folderRouter(server, _path, _originalPath, _prefix) {
   const files = fs.readdirSync(path.resolve(_path), { withFileTypes: true });
-  for (const file of files.sort((a, b) => (a[0] === "[" ? -1 : 1))) {
+  for (const file of files.sort((a, b) => (a.name[0] === "[" ? -1 : 1))) {
     if (file.isDirectory()) {
       await _folderRouter(
         server,
