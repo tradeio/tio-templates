@@ -15,11 +15,11 @@ const calcRoutePath = (_path, file, prefix, _originalPath) => {
     file === "index.ts" || file === "index.js"
       ? ""
       : file.substring(0, file.length - 3);
-  if (_fileName.startsWith("[") && _fileName.endsWith("]"))
-    _fileName = `:${_fileName.substring(1, _fileName.length - 1)}`;
   return path
     .join("/", prefix, _path.replace(_originalPath, ""), _fileName)
-    .replace(/\\/g, "/");
+    .replace(/\\/g, "/")
+    .replace(/\[/g, ":")
+    .replace(/\]/g, "");
 };
 
 async function _folderRouter(server, _path, _originalPath, _prefix) {
