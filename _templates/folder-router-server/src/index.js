@@ -2,9 +2,11 @@ import express from "express";
 import { PORT } from "./config/envs";
 import folderRouter from "./utils/folderRouter";
 import path from "path";
+import { logger } from "./config/logger";
 
 const app = express();
 
+app.use(logger);
 app.use(express.json());
 
 folderRouter(app, path.resolve(__dirname, "./routes")).then(() => {
